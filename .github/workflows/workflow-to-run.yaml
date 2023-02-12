@@ -1,0 +1,14 @@
+name: workflow-to-run
+on:
+  workflow_run:
+    workflows: ["workflow-to-dispatch"]
+    types: [completed]
+
+jobs:
+  to-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run
+        run: |
+          # echo event payload
+          echo "${{ toJson(github.event) }}"
